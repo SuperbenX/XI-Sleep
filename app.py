@@ -1,4 +1,63 @@
 import streamlit as st
+
+# --- 把这段 CSS 函数放在 app.py 最开头 ---
+def load_ios_style():
+    st.markdown("""
+        <style>
+        /* 1. 全局字体：强制使用苹果系统字体 */
+        html, body, [class*="css"] {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+        }
+
+        /* 2. 圆角按钮：让按钮像 iOS 的药丸形状 */
+        .stButton > button {
+            border-radius: 20px !important;
+            border: none !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+            font-weight: 600 !important;
+            padding: 0.5rem 1.5rem !important;
+            transition: all 0.2s ease;
+        }
+        .stButton > button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+        }
+
+        /* 3. 输入框：圆润化处理 */
+        .stTextInput > div > div > input {
+            border-radius: 12px !important;
+            border: 1px solid #E5E5EA !important;
+            background-color: #FFFFFF !important;
+        }
+        
+        /* 4. 侧边栏：去掉默认的粗糙感，改成磨砂白 */
+        [data-testid="stSidebar"] {
+            background-color: #F2F2F7 !important;
+            border-right: 1px solid #E5E5EA;
+        }
+
+        /* 5. 卡片容器：在这个容器里的内容会有卡片效果 (可选) */
+        .ios-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        /* 6. 去掉 Streamlit 默认的右上角菜单和页脚 (显得更像 App) */
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
+        </style>
+    """, unsafe_allow_html=True)
+
+# --- 在主程序一开始就调用它 ---
+load_ios_style()
+
+# ... 下面是你原来的代码 ...
+# st.title("瞬息") ...
+import streamlit as st
 import time
 import datetime
 from utils.page_setup import setup_page
