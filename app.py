@@ -53,66 +53,49 @@ def load_ios_style():
     """, unsafe_allow_html=True)
 
 # --- 在主程序一开始就调用它 ---
-load_ios_style()
-
-# ... 下面是你原来的代码 ...
-# st.title("瞬息") ...
-import streamlit as st
-import time
-import datetime
-from utils.page_setup import setup_page
-from utils.ai_helper import generate_daily_almanac
-
-st.set_page_config(
-    page_title="息 - Sleep",
-    page_icon="🌑",
-    layout="wide",
-    initial_sidebar_state="auto"
-)
-
-setup_page()
-
-# --- Splash Screen ---
-if "first_visit" not in st.session_state:
-    st.session_state.first_visit = True
-
-if st.session_state.first_visit:
-    placeholder = st.empty()
-    with placeholder.container():
-        st.markdown("""
+def load_ios_style():
+    st.markdown("""
         <style>
-        .splash-container {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #0f0f10;
-            color: #e2e8f0;
-            animation: fadeIn 2s ease-in-out;
+        /* 1. 全局字体：强制使用苹果系统字体，颜色跟随 config.toml */
+        html, body, [class*="css"] {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
         }
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+
+        /* 2. 标题优化：让标题更黑、更粗，增加层级感 */
+        h1, h2, h3 {
+            font-weight: 700 !important;
+            letter-spacing: -0.5px !important; /* 苹果风格的紧凑字间距 */
+            color: #000000 !important; /* 标题可以用纯黑，增加对比 */
         }
-        .splash-logo {
-            font-size: 5rem;
-            font-weight: 100;
-            letter-spacing: 0.2em;
+        
+        /* 3. 正文优化：让普通文字稍微柔和一点 */
+        p, label, .stMarkdown {
+            color: #1C1C1E !important; /* 正文使用深空灰 */
+            line-height: 1.6 !important;
+        }
+
+        /* 4. 圆角卡片 (保持不变) */
+        .ios-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); /* 阴影调淡了一点，更自然 */
             margin-bottom: 20px;
         }
-        .splash-text {
-            font-size: 1rem;
-            opacity: 0.5;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
+
+        /* 5. 按钮圆润化 (保持不变) */
+        .stButton > button {
+            border-radius: 20px !important;
+            border: none !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
         }
+        
+        /* 隐藏右上角菜单 */
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
         </style>
-        <div class="splash-container">
-            <div class="splash-logo">息</div>
-            <div class="splash-text">请你好好睡觉</div>
-        </div>
-        """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
     
     time.sleep(2.5)
     placeholder.empty()

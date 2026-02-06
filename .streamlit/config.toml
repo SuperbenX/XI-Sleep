@@ -1,13 +1,7 @@
 [theme]
-base = "dark"
-primaryColor = "#E0E0E0"
-backgroundColor = "#02040a"
-secondaryBackgroundColor = "#0a0c10"
-textColor = "#E0E0E0"
-font = "serif"
-[theme]
-primaryColor = "#007AFF"    # iOS 经典的系统蓝 (用于按钮、滑块)
-backgroundColor = "#F2F2F7" # iOS 系统背景灰 (不完全是纯白，看着更舒服)
-secondaryBackgroundColor = "#FFFFFF" # 卡片和侧边栏的纯白背景
-textColor = "#1C1C1E"       # iOS 深灰色字体 (比纯黑更柔和)
-font = "sans serif"         # 无衬线字体
+base = "light"
+primaryColor = "#007AFF"        # iOS 蓝 (按钮/滑块)
+backgroundColor = "#F2F2F7"     # iOS 背景灰 (App底色)
+secondaryBackgroundColor = "#FFFFFF" # 侧边栏/输入框背景纯白
+textColor = "#1C1C1E"           # 👈 关键修改：用“深空灰”代替纯黑，消除突兀感
+font = "sans serif"
